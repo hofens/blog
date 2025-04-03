@@ -2,7 +2,7 @@
 异步inflate即是将view的inflate过程放到其他线程中执行，不阻塞主线程；基于此还可以考虑提前异步inflate布局，将view放到缓存中，等待需要的时候从缓存中获取。
 
 ### 多线程执行
-系统默认的AsyncLayoutInflater是单线程执行的，可以改写它为多线程执行。基于官方AsyncLayoutInflater，扩展了线程池并行处理多个请求，提高了处理效率，也可以避免单一线程被阻塞时提交不进去。
+系统默认的AsyncLayoutInflater是单io线程执行的，可以改写它为多线程执行。基于官方AsyncLayoutInflater，扩展了线程池并行处理多个请求，提高了处理效率，也可以避免单一线程被阻塞时提交不进去。
 ```kotlin
 class InflateThread : Thread() {  
 	private val mQueue = LinkedBlockingQueue<InflateRequest>(50)  
